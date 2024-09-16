@@ -1,0 +1,18 @@
+// Style Definitions
+$text-color_light: black;
+$text-color_dark: white;
+$btn-text-color: white;
+$primary-color: #0078ff;
+
+// Theme Declaration
+@mixin lighten() {
+  --text-color: #{$text-color_light};
+  --primary-color: #{$primary-color};
+  --btn-text-color: #{$btn-text-color};
+}
+
+@mixin darken() {
+  --text-color: #{$text-color_dark};
+  --primary-color: #{$primary-color};
+  --btn-text-color: #{$btn-text-color};
+}
