@@ -1,0 +1,38 @@
+/* Overlay covering the entire screen */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px); /* Applies blur effect to content underneath */
+  z-index: 9999; /* Ensure it is on top of other content */
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: conic-gradient(#0000 10%, #474bff 90%);
+
+  /* Use explicit properties instead of shorthand */
+  mask-image: radial-gradient(farthest-side, transparent calc(100% - 9px), black 0);
+  mask-size: cover;
+  mask-position: center;
+
+  -webkit-mask-image: radial-gradient(farthest-side, transparent calc(100% - 9px), black 0);
+  -webkit-mask-size: cover;
+  -webkit-mask-position: center;
+
+  animation: spinner-rotate 1s infinite linear;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
