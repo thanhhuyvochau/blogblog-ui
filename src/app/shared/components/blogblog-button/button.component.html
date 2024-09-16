@@ -1,0 +1,20 @@
+<ng-container *ngIf="fullWidth; else fitWidth">
+  <div class="d-grid">
+    <ng-container *ngTemplateOutlet="btnTemplate"></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #fitWidth>
+  <ng-container *ngTemplateOutlet="btnTemplate"></ng-container>
+</ng-template>
+
+<ng-template #btnTemplate>
+  <button
+    [disabled]="disabled"
+    (click)="handleClick($event)"
+    type="button"
+    [class]="['btn', 'btn-' + severity]"
+  >
+    <span>{{ title }}</span>
+  </button>
+</ng-template>
