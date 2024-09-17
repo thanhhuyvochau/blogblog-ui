@@ -3,16 +3,18 @@ $text-color_light: black;
 $text-color_dark: white;
 $btn-text-color: white;
 $primary-color: #0078ff;
-
+$hyperlink-bold-color: #0c21c1;
 // Theme Declaration
 @mixin lighten() {
   --text-color: #{$text-color_light};
   --primary-color: #{$primary-color};
   --btn-text-color: #{$btn-text-color};
+  --hyperlink-bold-color: #{$hyperlink-bold-color};
 }
 
 @mixin darken() {
   --text-color: #{$text-color_dark};
   --primary-color: #{$primary-color};
   --btn-text-color: #{$btn-text-color};
+  --hyperlink-bold-color: #{$hyperlink-bold-color};
 }

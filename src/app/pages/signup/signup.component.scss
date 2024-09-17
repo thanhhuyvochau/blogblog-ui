@@ -1,0 +1,25 @@
+//.vertical-fill {
+//  min-height: 100vh !important;
+//}
+
+.left-bg {
+  background: #000842;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #signup-bg {
+    width: 70%;
+    margin: auto;
+  }
+}
+
+.register-form {
+  padding: 3.5rem;
+
+  a {
+    text-decoration: none;
+    color: var(--hyperlink-bold-color);
+    font-weight: bold;
+  }
+}

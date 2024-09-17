@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SEVERITY } from './blogblog-button.type';
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 
@@ -14,7 +14,7 @@ export class ButtonComponent {
   severity: SEVERITY = 'primary';
   @Input()
   disabled: boolean = false;
-  @Input()
+  @Output()
   onClick: EventEmitter<any> = new EventEmitter();
   @Input()
   iconBtn: boolean = false;
