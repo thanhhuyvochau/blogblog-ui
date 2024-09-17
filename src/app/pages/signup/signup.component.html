@@ -1,7 +1,10 @@
-<div class="container-xxl">
-  <div class="row gap-5 min-vh-100">
-    <div class="col-lg-4 col-md-12 align-content-center">
-      <h3>Sign up</h3>
+<div class="container-xxl shadow-lg bg-body rounded">
+  <div class="row min-vh-100">
+    <div class="col left-bg d-none d-lg-block">
+      <img id="signup-bg" src="./assets/images/signup-bg.png" alt="signup background image" />
+    </div>
+    <div class="col-lg-5 col-md-12 align-content-center register-form">
+      <h3 class="mb-4">Sign up</h3>
       <div class="sign-in-hint pb-3">
         <p>If you already have an account register</p>
         <p>You can <a href="#">Login here !</a></p>
@@ -38,9 +41,6 @@
           <app-button (onClick)="handleRegister()" title="Register" [fullWidth]="true"></app-button>
         </div>
       </form>
-    </div>
-    <div class="col left-bg">
-      <img id="signup-bg" src="./assets/images/signup-bg.png" alt="signup background image" />
     </div>
   </div>
 </div>
