@@ -7,11 +7,20 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { NgClass, NgIf } from '@angular/common';
 import { passwordMatchValidator, passwordValidator } from '../../shared/validators';
+import { Button, ButtonDirective } from 'primeng/button';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ButtonComponent, ToastModule, NgIf, ReactiveFormsModule, NgClass],
+  imports: [
+    ButtonComponent,
+    ToastModule,
+    NgIf,
+    ReactiveFormsModule,
+    NgClass,
+    Button,
+    ButtonDirective,
+  ],
   providers: [MessageService],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
