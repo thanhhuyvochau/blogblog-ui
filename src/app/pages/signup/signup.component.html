@@ -1,6 +1,6 @@
-<div class="container-xxl shadow-lg bg-body rounded">
+<div *ngIf="registerForm" class="container-xxl shadow-lg bg-body rounded">
   <div class="row min-vh-100">
-    <div class="col left-bg d-none d-lg-block">
+    <div class="col left-bg d-none d-lg-flex">
       <img id="signup-bg" src="./assets/images/signup-bg.png" alt="signup background image" />
     </div>
     <div class="col-lg-5 col-md-12 align-content-center register-form">
@@ -9,16 +9,97 @@
         <p>If you already have an account register</p>
         <p>You can <a href="#">Login here !</a></p>
       </div>
-      <form class="row row-gap-3">
+      <form autocomplete="off" [formGroup]="registerForm" class="row row-gap-3">
+        <!-- First Name and Last Name -->
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-12 col-md-6 mb-3 mb-md-0">
+              <label for="firstName" class="form-label">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                class="form-control"
+                placeholder="Your first name"
+                formControlName="firstName"
+                [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('firstName')?.invalid &&
+                    registerForm.get('firstName')?.touched,
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched
+                "
+                class="invalid-feedback"
+              >
+                <small *ngIf="registerForm.get('firstName')?.errors?.['required']"
+                  >First name is required.</small
+                >
+                <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']"
+                  >First name must be at least 2 characters long.</small
+                >
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                class="form-control"
+                placeholder="Your last name"
+                formControlName="lastName"
+                [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched,
+                }"
+              />
+              <div
+                *ngIf="
+                  registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched
+                "
+                class="invalid-feedback"
+              >
+                <small *ngIf="registerForm.get('lastName')?.errors?.['required']"
+                  >Last name is required.</small
+                >
+                <small *ngIf="registerForm.get('lastName')?.errors?.['minlength']"
+                  >Last name must be at least 2 characters long.</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input
+            autocomplete="off"
             type="email"
             id="email"
             class="form-control"
             placeholder="Enter your email address"
+            formControlName="email"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('email')?.invalid && registerForm.get('email')?.touched,
+            }"
           />
+          <div
+            *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+            class="invalid-feedback"
+          >
+            <small *ngIf="registerForm.get('email')?.errors?.['required']"
+              >Email is required.</small
+            >
+            <small *ngIf="registerForm.get('email')?.errors?.['email']"
+              >Invalid email format.</small
+            >
+          </div>
         </div>
+
+        <!-- Password -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input
@@ -26,8 +107,32 @@
             id="password"
             class="form-control"
             placeholder="Enter your Password"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('password')?.invalid && registerForm.get('password')?.touched,
+            }"
           />
+          <div
+            *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+            class="invalid-feedback"
+          >
+            <small *ngIf="registerForm.get('password')?.errors?.['required']"
+              >Password is required.</small
+            >
+            <small *ngIf="registerForm.get('password')?.errors?.['passwordInvalidLength']"
+              >Password must be between 8-16 characters.</small
+            >
+            <small *ngIf="registerForm.get('password')?.errors?.['passwordMissingUpperCase']"
+              >Password must have at least one uppercase letter.</small
+            >
+            <small *ngIf="registerForm.get('password')?.errors?.['passwordMissingSpecialCharacter']"
+              >Password must contain at least one special character.</small
+            >
+          </div>
         </div>
+
+        <!-- Confirm Password -->
         <div class="mb-3">
           <label for="confirmPassword" class="form-label">Confirm Password</label>
           <input
@@ -35,12 +140,30 @@
             id="confirmPassword"
             class="form-control"
             placeholder="Confirm your Password"
+            formControlName="confirmPassword"
+            [ngClass]="{
+              'is-invalid': registerForm.hasError('passwordMismatch') && registerForm.touched,
+            }"
           />
+          <div
+            *ngIf="registerForm.hasError('passwordMismatch') && registerForm.touched"
+            class="invalid-feedback"
+          >
+            <small>Passwords do not match.</small>
+          </div>
         </div>
+
+        <!-- Submit Button -->
         <div class="mt-3">
-          <app-button (onClick)="handleRegister()" title="Register" [fullWidth]="true"></app-button>
+          <app-button
+            [disabled]="!registerForm.valid"
+            (onClick)="handleRegister()"
+            title="Register"
+            [fullWidth]="true"
+          ></app-button>
         </div>
       </form>
     </div>
   </div>
 </div>
+<p-toast></p-toast>
