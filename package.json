@@ -26,6 +26,7 @@
     "@ngrx/store-devtools": "^17.2.0",
     "blogblog-ui": "file:",
     "bootstrap": "^5.3.3",
+    "jwt-decode": "^4.0.0",
     "primeng": "^17.18.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -40,7 +40,8 @@ export class SigninComponent {
     this.loadingService.loading$.next(true);
     let credentials = this.signInForm.value;
     this.userService.signin(credentials).subscribe({
-      next: async (data) => {
+      next: async (response) => {
+        localStorage.setItem('access_token', response.data.token);
         setTimeout(() => {
           this.loadingService.loading$.next(false);
           this.messageService.add({
