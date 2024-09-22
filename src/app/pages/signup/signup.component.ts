@@ -8,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
 import { NgClass, NgIf } from '@angular/common';
 import { passwordMatchValidator, passwordValidator } from '../../shared/validators';
 import { Button, ButtonDirective } from 'primeng/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +21,7 @@ import { Button, ButtonDirective } from 'primeng/button';
     NgClass,
     Button,
     ButtonDirective,
+    RouterLink,
   ],
   providers: [MessageService],
   templateUrl: './signup.component.html',

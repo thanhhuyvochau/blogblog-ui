@@ -1,0 +1,81 @@
+<div *ngIf="signInForm" class="container-xxl shadow-lg bg-body rounded">
+  <div class="row min-vh-100">
+    <div class="col left-bg d-none d-lg-flex">
+      <img id="signin-bg" src="./assets/images/signup-bg.png" alt="signup background image" />
+    </div>
+    <div class="col-lg-5 col-md-12 align-content-center register-form">
+      <h3 class="mb-4">Sign up</h3>
+      <div class="sign-in-hint pb-3">
+        <p>If you don’t have an account register</p>
+        <p>You can <a href="#" [routerLink]="'/signup'">Register here !</a></p>
+      </div>
+      <form autocomplete="off" [formGroup]="signInForm" class="row row-gap-3">
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            autocomplete="off"
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Enter your email address"
+            formControlName="email"
+            [ngClass]="{
+              'is-invalid': signInForm.get('email')?.invalid && signInForm.get('email')?.touched,
+            }"
+          />
+          <div
+            *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.touched"
+            class="invalid-feedback"
+          >
+            <small *ngIf="signInForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="signInForm.get('email')?.errors?.['email']">Invalid email format.</small>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Enter your Password"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid':
+                signInForm.get('password')?.invalid && signInForm.get('password')?.touched,
+            }"
+          />
+          <div
+            *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched"
+            class="invalid-feedback"
+          >
+            <small *ngIf="signInForm.get('password')?.errors?.['required']"
+              >Password is required.</small
+            >
+            <small *ngIf="signInForm.get('password')?.errors?.['passwordInvalidLength']"
+              >Password must be between 8-16 characters.</small
+            >
+            <small *ngIf="signInForm.get('password')?.errors?.['passwordMissingUpperCase']"
+              >Password must have at least one uppercase letter.</small
+            >
+            <small *ngIf="signInForm.get('password')?.errors?.['passwordMissingSpecialCharacter']"
+              >Password must contain at least one special character.</small
+            >
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="mt-3">
+          <app-button
+            [disabled]="!signInForm.valid"
+            (onClick)="handleSignIn()"
+            title="Login"
+            [fullWidth]="true"
+          ></app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
