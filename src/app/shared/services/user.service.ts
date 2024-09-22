@@ -11,4 +11,8 @@ export class UserService {
   register(registerInfo: any) {
     return this.http.post<HttpClient>(API.REGISTER_URL, registerInfo);
   }
+
+  signin(credentials: any) {
+    return this.http.post<HttpClient>(API.SIGNIN_URL, credentials);
+  }
 }

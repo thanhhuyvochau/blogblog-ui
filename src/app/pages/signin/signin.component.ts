@@ -7,7 +7,7 @@ import { passwordMatchValidator, passwordValidator } from '../../shared/validato
 import { NgClass, NgIf } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/blogblog-button/button.component';
 import { ToastModule } from 'primeng/toast';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -24,6 +24,7 @@ export class SigninComponent {
     private loadingService: LoadingService,
     private userService: UserService,
     private messageService: MessageService,
+    private router: Router,
   ) {
     this.buildFormGroup();
   }
@@ -36,25 +37,30 @@ export class SigninComponent {
   }
 
   handleSignIn() {
-    // this.loadingService.loading$.next(true);
-    // let registerInfo = this.signInForm.value;
-    // delete registerInfo.confirmPassword;
-    // this.userService.signup(registerInfo).subscribe({
-    //   next: (data) => {
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Success',
-    //       detail: 'Successfully registered',
-    //     });
-    //     this.loadingService.loading$.next(false);
-    //   },
-    //   error: (error) => {
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Success',
-    //       detail: 'Successfully registered',
-    //     });
-    //   },
-    // });
+    this.loadingService.loading$.next(true);
+    let credentials = this.signInForm.value;
+    this.userService.signin(credentials).subscribe({
+      next: async (data) => {
+        setTimeout(() => {
+          this.loadingService.loading$.next(false);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Signup successfully',
+          });
+        }, 1000);
+        setTimeout(async () => {
+          await this.router.navigateByUrl('/home');
+        }, 2000);
+      },
+      error: (error) => {
+        this.loadingService.loading$.next(false);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Fail',
+          detail: 'Signup failed',
+        });
+      },
+    });
   }
 }
