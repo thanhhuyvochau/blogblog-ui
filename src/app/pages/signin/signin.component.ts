@@ -8,6 +8,8 @@ import { NgClass, NgIf } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/blogblog-button/button.component';
 import { ToastModule } from 'primeng/toast';
 import { Router, RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthenticateActions } from '../../state-management/actions/authenticate.actions';
 
 @Component({
   selector: 'app-signin',
@@ -25,6 +27,7 @@ export class SigninComponent {
     private userService: UserService,
     private messageService: MessageService,
     private router: Router,
+    private store: Store,
   ) {
     this.buildFormGroup();
   }
@@ -42,6 +45,7 @@ export class SigninComponent {
     this.userService.signin(credentials).subscribe({
       next: async (response) => {
         localStorage.setItem('access_token', response.data.token);
+        this.store.dispatch(AuthenticateActions.loginSuccessful({ userInfo: response.data }));
         setTimeout(() => {
           this.loadingService.loading$.next(false);
           this.messageService.add({
