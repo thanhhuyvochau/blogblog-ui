@@ -1,0 +1,9 @@
+.home {
+  .blog-list {
+    .blog-card-item {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
