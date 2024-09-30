@@ -4,12 +4,16 @@ $text-color_dark: white;
 $btn-text-color: white;
 $primary-color: #0078ff;
 $hyperlink-bold-color: #0c21c1;
+$blog-color-light: #667085;
+$blog-color-dark: #c0c5d0;
+
 // Theme Declaration
 @mixin lighten() {
   --text-color: #{$text-color_light};
   --primary-color: #{$primary-color};
   --btn-text-color: #{$btn-text-color};
   --hyperlink-bold-color: #{$hyperlink-bold-color};
+  --blog-content-text-color: #{$blog-color-light};
 }
 
 @mixin darken() {
@@ -17,4 +21,5 @@ $hyperlink-bold-color: #0c21c1;
   --primary-color: #{$primary-color};
   --btn-text-color: #{$btn-text-color};
   --hyperlink-bold-color: #{$hyperlink-bold-color};
+  --blog-content-text-color: #{$blog-color-dark};
 }
